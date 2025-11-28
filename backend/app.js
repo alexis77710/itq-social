@@ -8,6 +8,7 @@ var app = express();
 // CARGAR RUTAS (Las iremos creando poco a poco)
 var user_routes = require('./routes/user');
 var publication_routes = require('./routes/publication');
+var message_routes = require('./routes/message'); // rutas de mensajes privados
 // var follow_routes = require('./routes/follow'); 
 // ... etc
 
@@ -28,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use('/api', user_routes); // <--- AGREGA ESTO (todo tendrá el prefijo /api)
 app.use('/api', publication_routes);
-
+app.use('/api', message_routes);
 // RUTA DE PRUEBA
 app.get('/test', (req, res) => {
     res.status(200).send({
