@@ -1,0 +1,56 @@
+<div class="col-lg-10 mx-auto mt-4">
+    
+    <div class="card shadow-lg p-4 mb-5 rounded-4 border-0" *ngIf="user">
+        <div class="row g-0 align-items-center">
+            
+            <div class="col-md-4 text-center">
+                <div class="profile-image-container mx-auto">
+                    <img *ngIf="user.image" src="{{ url + 'get-image-user/' + user.image }}" class="img-fluid rounded-circle profile-pic" />
+                    <img *ngIf="!user.image" src="assets/user.png" class="img-fluid rounded-circle profile-pic" />
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body text-center text-md-start">
+                    
+                    <h1 class="fw-bold mb-1">{{user.name}} {{user.surname}}</h1>
+                    <h4 class="text-muted mb-3">{{ '@' + user?.nick }}</h4>
+
+                    
+                    <div class="bio-box p-3 mb-4 rounded-3" style="background-color: var(--bg-body);">
+                        <p class="mb-0 fst-italic">
+                            {{ user.bio ? user.bio : 'Este usuario no ha añadido una descripción aún.' }}
+                        </p>
+                    </div>
+
+                    <div class="d-flex justify-content-center justify-content-md-start gap-4 mb-4">
+                        <div class="text-center">
+                            <span class="d-block fw-bold fs-5">0</span>
+                            <span class="text-muted small">Siguiendo</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="d-block fw-bold fs-5">0</span>
+                            <span class="text-muted small">Seguidores</span>
+                        </div>
+                        <div class="text-center">
+                            <span class="d-block fw-bold fs-5">0</span>
+                            <span class="text-muted small">Publicaciones</span>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-outline-dark btn-lg px-4 rounded-pill">
+                            Seguir
+                        </button>
+                        
+                        <button class="btn btn-primary btn-lg px-4 rounded-pill ms-md-2" [routerLink]="['/mensajes/enviar']">
+                            Enviar Mensaje
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

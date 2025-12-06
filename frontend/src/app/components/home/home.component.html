@@ -1,0 +1,60 @@
+<div class="col-lg-12 mt-4">
+    
+    <div class="p-5 mb-4 rounded-3 text-center hero-card" 
+         style="background: linear-gradient(135deg, #1a1a1a 0%, #D32F2F 100%); color: white;">
+        
+        <div class="container-fluid py-5">
+            <h1 class="display-4 fw-bold">Bienvenido al ITQ Social</h1>
+            <p class="fs-5 mb-4">La plataforma para conectar con tu comunidad universitaria.</p>
+            
+            <div *ngIf="identity">
+                <div class="card mx-auto shadow p-3" 
+                     style="max-width: 400px; border-radius: 16px; background-color: var(--bg-card); color: var(--text-main);">
+                    
+                    <div class="d-flex align-items-center">
+                        <div class="me-3">
+                             <img *ngIf="identity.image" src="{{ url + 'get-image-user/' + identity.image }}" class="avatar-sidebar" />
+                             <img *ngIf="!identity.image" src="assets/user.png" class="avatar-sidebar" />
+                        </div>
+                        <div class="text-start">
+                            <h5 class="mb-0 fw-bold">Hola, {{identity.name}}</h5>
+                            <small class="text-muted">Estás en línea ✅</small>
+                        </div>
+                        <div class="ms-auto">
+                            <button [routerLink]="['/timeline']" class="btn btn-outline-danger btn-sm rounded-pill">Ir al Feed ➝</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!identity">
+                <button [routerLink]="['/registro']" class="btn btn-light btn-lg px-4 me-2 fw-bold">Crear Cuenta</button>
+                <button [routerLink]="['/login']" class="btn btn-outline-light btn-lg px-4">Entrar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div *ngIf="identity" class="row align-items-md-stretch">
+        
+        <div class="col-md-6 mb-4">
+          <div class="h-100 p-5 rounded-3 card border-0" 
+               style="background-color: var(--bg-card); color: var(--text-main);">
+            <h2 class="fw-bold">📢 Novedades</h2>
+            <p>Mantente al día con las últimas publicaciones de tus compañeros y profesores. Comparte fotos, ideas y proyectos.</p>
+            <button [routerLink]="['/timeline']" class="btn btn-outline-secondary" type="button">Ver Publicaciones</button>
+          </div>
+        </div>
+
+        <div class="col-md-6 mb-4">
+          <div class="h-100 p-5 rounded-3 card border-0" 
+               style="background-color: var(--bg-card); color: var(--text-main);">
+            <h2 class="fw-bold">💬 Chat Privado</h2>
+            <p>Conecta de forma directa con otros estudiantes. Envía mensajes privados y colabora en tiempo real.</p>
+            <button [routerLink]="['/mensajes']" class="btn btn-primary" type="button">Ir al Chat</button>
+          </div>
+        </div>
+
+    </div>
+
+</div>

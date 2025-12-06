@@ -1,0 +1,53 @@
+<div class="card mb-3 user-card">
+    <div class="card-body">
+        <div class="d-flex align-items-center mb-3">
+            <div class="image-user me-3">
+                <img src="{{url + 'get-image-user/' + identity.image}}" *ngIf="identity.image" class="avatar-sidebar" />
+                <img src="assets/user.png" *ngIf="!identity.image" class="avatar-sidebar" />
+            </div>
+            <div>
+                <h5 class="fw-bold mb-0">
+                    <a [routerLink]="['/perfil', identity._id]" 
+                       class="text-decoration-none fw-bold" 
+                       style="color: var(--text-main);">
+                        {{identity.name}} {{identity.surname}}
+                    </a>
+                </h5>
+                <small class="text-muted">{{identity.nick}}</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-header fw-bold">
+        📢 Crear Publicación
+    </div>
+    <div class="card-body">
+        
+        <div class="alert alert-success" *ngIf="status == 'success'">
+            ¡Publicado correctamente!
+        </div>
+        <div class="alert alert-danger" *ngIf="status == 'error'">
+            Error al enviar.
+        </div>
+
+        <form #newPubForm="ngForm" (ngSubmit)="onSubmit(newPubForm)">
+            
+            <div class="form-group mb-3">
+                <label class="form-label">¿Qué estás pensando?</label>
+                <textarea name="texto" #texto="ngModel" [(ngModel)]="publication.texto" class="form-control" required></textarea>
+                <span *ngIf="!texto.valid && texto.touched" class="text-danger">El texto es obligatorio</span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label">Sube una foto (Opcional)</label>
+                <input type="file" class="form-control" (change)="fileChangeEvent($event)">
+            </div>
+
+            <input type="submit" value="Publicar" class="btn btn-success w-100" [disabled]="!newPubForm.form.valid" />
+
+        </form>
+
+    </div>
+</div>

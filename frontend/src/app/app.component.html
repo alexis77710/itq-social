@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+
+        <a class="navbar-brand d-flex align-items-center" [routerLink]="['/home']">
+            <i class="bi bi-pinterest me-2"></i> NG-SOCIAL
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarContent">
+
+            <ul class="navbar-nav mx-auto mb-2 mb-lg-0 align-items-center" *ngIf="identity">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/timeline']" routerLinkActive="active">Inicio</a>
+                </li>
+                <li class="nav-item mx-2">
+                    <a class="nav-link" [routerLink]="['/gente']" routerLinkActive="active">Gente</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/mensajes']" routerLinkActive="active">Mensajes</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center gap-2">
+
+                <ng-container *ngIf="identity">
+                    <li class="nav-item" title="Mi Perfil">
+                        <a [routerLink]="['/perfil', identity._id]"
+                            class="d-flex align-items-center text-decoration-none text-dark fw-bold">
+                            <div
+                                style="width: 30px; height: 30px; overflow: hidden; border-radius: 50%; background: #ddd;">
+                                <img *ngIf="identity.image" src="{{url + 'get-image-user/' + identity.image}}"
+                                    style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" [routerLink]="['/mis-datos']">Ajustes</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn nav-link" (click)="toggleTheme()">
+                            {{ isDarkMode ? '☀️' : '🌙' }} </button>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-logout" [routerLink]="['/logout']">Salir</a>
+                    </li>
+                </ng-container>
+
+                <ng-container *ngIf="!identity">
+                    <li class="nav-item">
+                        <a class="btn btn-danger rounded-pill fw-bold" [routerLink]="['/login']">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-light rounded-pill fw-bold" [routerLink]="['/registro']">Registrarse</a>
+                    </li>
+                </ng-container>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <router-outlet></router-outlet>
+</div>

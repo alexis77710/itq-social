@@ -1,0 +1,19 @@
+<div class="col-lg-12 mt-3">
+    <h1 class="h1-strong">{{title}}</h1>
+
+    <div class="btn-group mb-4" role="group">
+        <a [routerLink]="['/mensajes/enviar']" routerLinkActive="active" class="btn btn-outline-primary">
+            ✉️ Enviar Mensaje
+        </a>
+        <a [routerLink]="['/mensajes/recibidos']" routerLinkActive="active" class="btn btn-outline-primary">
+            📥 Recibidos
+        </a>
+        <a [routerLink]="['/mensajes/enviados']" routerLinkActive="active" class="btn btn-outline-primary">
+            📤 Enviados
+        </a>
+    </div>
+
+    <div class="messages-box">
+        <router-outlet></router-outlet>
+    </div>
+</div>

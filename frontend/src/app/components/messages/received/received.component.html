@@ -1,0 +1,40 @@
+<div class="col-lg-12">
+    <h3 class="h3-strong">{{title}}</h3>
+
+    <div *ngIf="messages" class="mt-3">
+        
+        <div *ngFor="let message of messages" class="card mb-2">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    
+                    <div class="col-md-1">
+                        <img *ngIf="message.emitter.image" src="{{ url + 'get-image-user/' + message.emitter.image }}" class="avatar-default" />
+                        <img *ngIf="!message.emitter.image" src="assets/user.png" class="avatar-default" />
+                    </div>
+
+                    <div class="col-md-11">
+                        <h5 class="mb-1">
+                            <span class="fw-bold">{{message.emitter.name}} {{message.emitter.surname}}</span>
+                            <small class="text-muted ms-2" style="font-size: 12px;">
+                                {{ (message.created_at * 1000) | date:'short' }}
+                            </small>
+                        </h5>
+                        
+                        <p class="mb-0 text-dark">{{message.text}}</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="!messages || messages.length == 0" class="alert alert-warning mt-3">
+        No tienes mensajes recibidos.
+    </div>
+
+    <div class="text-center mt-3" *ngIf="pages && pages > 1">
+        <button [routerLink]="['/mensajes/recibidos', prev_page]" class="btn btn-outline-secondary me-2" [disabled]="page == 1">Anterior</button>
+        <button [routerLink]="['/mensajes/recibidos', next_page]" class="btn btn-outline-secondary" [disabled]="page == pages">Siguiente</button>
+    </div>
+</div>

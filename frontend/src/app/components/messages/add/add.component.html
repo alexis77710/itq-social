@@ -1,0 +1,31 @@
+<div class="col-lg-8">
+    <h3 class="h3-strong">{{title}}</h3>
+
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Mensaje enviado correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        Error al enviar el mensaje.
+    </div>
+
+    <form #addForm="ngForm" (ngSubmit)="onSubmit(addForm)">
+        
+        <p>
+            <label>Para:</label>
+            <select name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver" class="form-control" required>
+                <option value="">Selecciona un usuario</option>
+                <option *ngFor="let user of users" value="{{user._id}}">
+                    {{user.name}} {{user.surname}} ({{user.nick}})
+                </option>
+            </select>
+        </p>
+
+        <p>
+            <label>Mensaje:</label>
+            <textarea name="text" #text="ngModel" [(ngModel)]="message.text" class="form-control" required placeholder="Escribe tu mensaje privado..."></textarea>
+        </p>
+
+        <input type="submit" value="Enviar" class="btn btn-success" [disabled]="!addForm.form.valid" />
+
+    </form>
+</div>

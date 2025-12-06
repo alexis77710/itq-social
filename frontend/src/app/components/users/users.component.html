@@ -1,0 +1,43 @@
+<div class="col-lg-12 mt-3">
+    <h1 class="h1-strong">{{title}}</h1>
+
+    <div class="people" *ngIf="users">
+        
+        <div class="item-user card mb-3" *ngFor="let user of users">
+            <div class="card-body row">
+                
+                <div class="image-user col-md-1 d-flex align-items-center justify-content-center">
+                    <img src="{{url + 'get-image-user/' + user.image}}" *ngIf="user.image" class="avatar-default" />
+                    <img src="/assets/user.png" *ngIf="!user.image" class="avatar-default" />
+                </div>
+
+                <div class="user-name col-md-7 d-flex flex-column justify-content-center">
+                    <h5 class="mb-0">
+                        <a [routerLink]="['/perfil', user._id]"  class="text-decoration-none fw-bold" style="color: var(--text-main) !important;">
+                            {{user.name}} {{user.surname}}
+                        </a>
+                    </h5>
+                    <span class="text-muted">{{user.nick}}</span>
+                    <small>{{user.email}}</small>
+                </div>
+
+                <div class="col-md-4 d-flex align-items-center">
+                    <button class="btn btn-success btn-sm pull-right">
+                        <i class="glyphicon glyphicon-plus-sign"></i> Seguir
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <ul class="pagination justify-content-center mt-4">
+        <li class="page-item" *ngIf="page > 1">
+            <a class="page-link" [routerLink]="['/gente', prev_page]">Anterior</a>
+        </li>
+        <li class="page-item" *ngIf="pages != page">
+            <a class="page-link" [routerLink]="['/gente', next_page]">Siguiente</a>
+        </li>
+    </ul>
+</div>

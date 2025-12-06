@@ -1,0 +1,56 @@
+<div class="col-lg-6 mt-3 mx-auto">
+    <h1 class="h1-strong">{{title}}</h1>
+
+    <div class="alert alert-success" *ngIf="status == 'success'">
+        Datos actualizados correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="status == 'error'">
+        No se han podido actualizar los datos.
+    </div>
+
+    <form #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
+
+        <div class="form-group mb-3">
+            <label class="d-block">Avatar actual</label>
+
+            <div *ngIf="user.image">
+                <img src="{{url + 'get-image-user/' + user.image}}" class="avatar-edit" />
+            </div>
+            <div *ngIf="!user.image">
+                <img src="assets/user.png" class="avatar-edit" />
+            </div>
+        </div>
+
+        <p>
+            <label>Sube tu avatar</label>
+            <input type="file" placeholder="Subir imagen" (change)="fileChangeEvent($event)" class="form-control">
+        </p>
+
+        <p>
+            <label>Nombre</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required>
+        </p>
+
+        <p>
+            <label>Apellidos</label>
+            <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control"
+                required>
+        </p>
+
+        <p>
+            <label>Nick</label>
+            <input type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" class="form-control" required>
+        </p>
+
+        <p>
+            <label>Email</label>
+            <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required>
+        </p>
+        <p>
+            <label>Biografía</label>
+            <textarea name="bio" #bio="ngModel" [(ngModel)]="user.bio" class="form-control"
+                placeholder="Cuéntanos algo sobre ti..."></textarea>
+        </p>
+        <input type="submit" value="Guardar Cambios" class="btn btn-success" [disabled]="!userEditForm.form.valid">
+    </form>
+</div>

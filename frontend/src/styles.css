@@ -1,0 +1,194 @@
+/* --- 1. VARIABLES DE COLORES (MODO CLARO POR DEFECTO) --- */
+:root {
+    /* Colores de Marca ITQ */
+    --itq-red: #D32F2F;
+    --itq-dark-red: #b71c1c;
+    --itq-black: #1a1a1a;
+    
+    /* Variables del Tema (Fondo, Texto, Tarjetas) */
+    --bg-body: #f4f7f6;       /* Gris muy clarito de fondo */
+    --bg-card: #ffffff;       /* Tarjetas blancas */
+    --text-main: #1a1a1a;     /* Texto negro */
+    --text-muted: #6c757d;    /* Texto gris */
+    --border-color: #e0e0e0;
+    --input-bg: #ffffff;
+    --navbar-bg: #ffffff;
+    --shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* --- 2. CLASE PARA MODO OSCURO (DARK MODE) --- */
+
+.dark-theme {
+    --bg-body: #121212;
+    --bg-card: #1e1e1e;
+    --text-main: #ffffff !important;  /* Blanco puro para títulos y nombres */
+    --text-muted: #b0b0b0 !important; /* Gris claro para fechas y nicks */
+    --border-color: #333333;
+    --input-bg: #2c2c2c;
+    --navbar-bg: #1e1e1e;
+    --shadow: 0 4px 12px rgba(0,0,0,0.5); /* Sombra más fuerte */
+}
+
+/* --- 3. APLICACIÓN DE ESTILOS GLOBALES --- */
+body {
+    background-color: var(--bg-body);
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Títulos y textos */
+h1, h2, h3, h4, h5, h6, .h1-strong {
+    color: var(--text-main) !important;
+}
+
+/* --- 4. COMPONENTES REDISEÑADOS --- */
+
+/* Navbar */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s;
+}
+.navbar-brand {
+    color: var(--itq-red) !important;
+    font-weight: 800;
+    font-size: 1.5rem;
+}
+.nav-link {
+    color: var(--text-main) !important;
+    font-weight: 500;
+}
+.nav-link:hover {
+    color: var(--itq-red) !important;
+}
+.navbar .active {
+    color: var(--itq-red) !important;
+    font-weight: bold;
+}
+
+/* Tarjetas (Cards) */
+.card {
+    border: none;
+    border-radius: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* <--- ESTO ES LA MAGIA */
+    background: white;
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
+/* EL EFECTO AL PASAR EL MOUSE */
+.card:hover {
+    transform: translateY(-8px); /* Sube 8px */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); /* Sombra grande */
+    cursor: pointer; /* Manita */
+}
+.card-header {
+    background-color: var(--itq-red);
+    color: white;
+    border-radius: 16px 16px 0 0 !important;
+}
+
+/* Inputs y Formularios */
+.form-control {
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    border-radius: 12px;
+    padding: 10px;
+}
+.form-control:focus {
+    background-color: var(--input-bg);
+    color: var(--text-main);
+    border-color: var(--itq-red);
+    box-shadow: 0 0 0 0.2rem rgba(211, 47, 47, 0.25);
+}
+
+/* Botones ITQ (Adiós Azul) */
+.btn-primary {
+    background-color: var(--itq-black) !important;
+    border-color: var(--itq-black) !important;
+    color: white;
+    border-radius: 20px;
+}
+.btn-primary:hover {
+    background-color: #000000 !important;
+}
+
+.btn-success {
+    background-color: var(--itq-red) !important;
+    border-color: var(--itq-red) !important;
+    border-radius: 20px;
+}
+.btn-success:hover {
+    background-color: var(--itq-dark-red) !important;
+}
+
+/* Avatares */
+.avatar-default, .avatar-sidebar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+}
+.avatar-edit {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--itq-red);
+}
+
+/* Margen container */
+.container {
+    margin-top: 20px;
+    padding-bottom: 50px;
+}
+/* FORZAR COLOR DE ENLACES EN MODO OSCURO */
+.dark-theme a.text-dark {
+    color: var(--text-main) !important;
+}
+
+.dark-theme .text-muted {
+    color: var(--text-muted) !important;
+}
+/* FORZAR TEXTO NEGRO EN TARJETAS */
+.card-body p, .card-body h5, .card-body h6 {
+    color: var(--itq-black);
+}
+.card-body small {
+    color: #666; /* Gris oscuro legible */
+}
+/* --- CORRECCIÓN MODO OSCURO GLOBAL --- */
+
+.dark-theme .card {
+    background-color: var(--bg-card) !important;
+    color: var(--text-main) !important;
+}
+
+/* Forzar que todos los textos dentro de tarjetas sean blancos en modo noche */
+.dark-theme .card-body h5, 
+.dark-theme .card-body h6, 
+.dark-theme .card-body p, 
+.dark-theme .card-body a {
+    color: var(--text-main) !important;
+}
+
+/* Forzar que los inputs (como el de buscar o publicar) sean oscuros */
+.dark-theme .form-control {
+    background-color: var(--input-bg) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-main) !important;
+}
+/* --- CORRECCIÓN DE PLACEHOLDERS EN MODO OSCURO --- */
+.dark-theme .form-control::placeholder {
+    color: #cccccc !important; /* Gris muy claro */
+    opacity: 1; /* Para que Firefox no lo haga transparente */
+}
+.dark-theme .form-control:focus {
+    background-color: #3a3a3a !important;
+    color: white !important;
+    border-color: var(--itq-red) !important;
+}
